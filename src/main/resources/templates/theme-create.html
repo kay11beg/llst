@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ja" class="llst-bg-color" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>llst_新規テーマの作成</title>
+<link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link href="../static/css/common.css" th:href="@{/css/common.css}" rel="stylesheet">
+<script defer src="../static/js/bootstrap.bundle.min.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script defer src="../static/js/ui-supplements/theme-form.js" th:src="@{/js/ui-supplements/theme-form.js}"></script>
+</head>
+
+<body class="bg-transparent text-nowrap fw-medium">
+
+  <!-- header -->
+  <div class="container footer-container-width mt-4 mx-md-5">
+    <div class="row justify-content-md-start">
+      <div class="col-md-4 text-center text-md-start">
+        <h1>新規テーマの作成</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- main -->
+  <form class="container main-container-width" name="themeCreate"
+    th:action="@{/users/{userId}/theme-create}" method="post" th:object="${CreateThemeForm}">
+
+    <div class="row m-1 me-2">
+
+      <div class="comp-md-width">
+        <label for="themeName" class="form-label ms-3">学習テーマ名</label>
+        <input type="text" class="form-control"id="themeName"
+          th:class="${#fields.hasErrors('themeName')}? 'form-control is-invalid' : 'form-control'"
+          th:field="*{themeName}" placeholder="テーマ名を入力してください">
+        <div class="invalid-feedback ms-3" id="errorThemeName"
+          th:if="${#fields.hasErrors('themeName')}" th:errors="*{themeName}"></div>
+      </div>
+
+      <div class="def-md-width">
+
+        <label for="themeText" class="form-label ms-3 mt-2">学習テキスト</label>
+        <textarea class="form-control fs-6 pb-ta-custom" id="themeText"
+          th:class="${#fields.hasErrors('themeText')}? 'form-control fs-6 pb-ta-custom is-invalid' : 'form-control fs-6 pb-ta-custom'"
+          th:field="*{themeText}" placeholder="テキストを入力してください"></textarea>
+        <div class="invalid-feedback ms-3" id="errorThemeText"
+          th:if="${#fields.hasErrors('themeText')}" th:errors="*{themeText}"></div>
+
+        <div class="counter text-end mt-1 me-2">
+          <span id="charCount">0</span> / 3000
+        </div>
+
+        <label for="isUrlChecked" class="form-label ms-3 mb-0">URL情報の入力を許可</label>
+        <input type="checkbox" class="form-check-input align-baseline ms-5"
+          th:class="${#fields.hasErrors('isUrlChecked')}? 'form-check-input align-baseline ms-5 is-invalid' : 'form-check-input align-baseline ms-5'"
+          id="isUrlChecked" th:field="*{isUrlChecked}"
+          data-bs-toggle="collapse" data-bs-target="#collapseInputText">
+        <div class="invalid-feedback ms-3" id="errorIsUrlChecked"
+          th:if="${#fields.hasErrors('isUrlChecked')}" th:errors="*{isUrlChecked}"></div>
+      </div>
+    </div>
+
+    <div class="row collapse mx-2 me-2" id="collapseInputText">
+
+      <div class="col-4 col-md-4 ">
+        <p class="ms-3 mb-1">URLキータグ</p>
+      </div>
+
+      <div class="col-8 col-md-8">
+        <p class="ms-3 mb-1">/ URL</p>
+      </div>
+
+      <div class="col-md-4 mb-1">
+        <label for="urlKey1" class="form-label visually-hidden"></label>
+        <input type="text" class="form-control py-1" id="urlKey1"
+          th:class="${#fields.hasErrors('urlKey1')}? 'form-control py-1 is-invalid' : 'form-control py-1'"
+          th:field="*{urlKey1}" placeholder="キータグ1">
+        <div class="invalid-feedback ms-3" id="errorUrlKey1"
+          th:if="${#fields.hasErrors('urlKey1')}" th:errors="*{urlKey1}"></div>
+      </div>
+
+      <div class="col-md-8 mb-1">
+        <label for="urlValue1" class="form-label visually-hidden"></label>
+        <input type="text" class="form-control py-1" id="urlValue1"
+          th:class="${#fields.hasErrors('urlValue1')}? 'form-control py-1 is-invalid' : 'form-control py-1'"
+          th:field="*{urlValue1}" placeholder="http:// or https://">
+        <div class="invalid-feedback ms-3" id="errorUrlValue1"
+          th:if="${#fields.hasErrors('urlValue1')}" th:errors="*{urlValue1}"></div>
+      </div>
+
+      <div class="col-md-4 mb-1">
+        <label for="urlKey2" class="form-label visually-hidden"></label>
+        <input type="text" class="form-control py-1" id="urlKey2"
+          th:class="${#fields.hasErrors('urlKey2')}? 'form-control py-1 is-invalid' : 'form-control py-1'"
+          th:field="*{urlKey2}" placeholder="キータグ2">
+        <div class="invalid-feedback ms-3" id="errorUrlKey2"
+          th:if="${#fields.hasErrors('urlKey2')}" th:errors="*{urlKey2}"></div>
+      </div>
+
+      <div class="col-md-8 mb-1">
+        <label for="urlValue2" class="form-label visually-hidden"></label>
+        <input type="text" class="form-control py-1" id="urlValue2"
+          th:class="${#fields.hasErrors('urlValue2')}? 'form-control py-1 is-invalid' : 'form-control py-1'"
+          th:field="*{urlValue2}" placeholder="http:// or https://">
+        <div class="invalid-feedback ms-3" id="errorUrlValue2"
+          th:if="${#fields.hasErrors('urlValue2')}" th:errors="*{urlValue2}"></div>
+      </div>
+
+      <div class="col-md-4 mb-1">
+        <label for="urlKey3" class="form-label visually-hidden"></label>
+        <input type="text" class="form-control py-1" id="urlKey3"
+          th:class="${#fields.hasErrors('urlKey3')}? 'form-control py-1 is-invalid' : 'form-control py-1'"
+          th:field="*{urlKey3}" placeholder="キータグ3">
+        <div class="invalid-feedback ms-3" id="errorUrlKey3"
+          th:if="${#fields.hasErrors('urlKey3')}" th:errors="*{urlKey3}"></div>
+      </div>
+
+      <div class="col-md-8 mb-1">
+        <label for="urlValue3" class="form-label visually-hidden"></label>
+        <input type="text" class="form-control py-1" id="urlValue3"
+          th:class="${#fields.hasErrors('urlValue3')}? 'form-control py-1 is-invalid' : 'form-control py-1'"
+          th:field="*{urlValue3}" placeholder="http:// or https://">
+        <div class="invalid-feedback ms-3" id="errorUrlValue3"
+          th:if="${#fields.hasErrors('urlValue3')}" th:errors="*{urlValue3}"></div>
+      </div>
+
+      <div class="col-md-4 mb-1">
+        <label for="urlKey4" class="form-label visually-hidden"></label>
+        <input type="text" class="form-control py-1" id="urlKey4"
+          th:class="${#fields.hasErrors('urlKey4')}? 'form-control py-1 is-invalid' : 'form-control py-1'"
+          th:field="*{urlKey4}" placeholder="キータグ4">
+        <div class="invalid-feedback ms-3" id="errorUrlKey4"
+          th:if="${#fields.hasErrors('urlKey4')}" th:errors="*{urlKey4}"></div>
+      </div>
+
+      <div class="col-md-8 mb-1">
+        <label for="urlValue4" class="form-label visually-hidden"></label>
+        <input type="text" class="form-control py-1" id="urlValue4"
+          th:class="${#fields.hasErrors('urlValue4')}? 'form-control py-1 is-invalid' : 'form-control py-1'"
+          th:field="*{urlValue4}" placeholder="http:// or https://">
+        <div class="invalid-feedback ms-3" id="errorUrlValue4"
+          th:if="${#fields.hasErrors('urlValue4')}" th:errors="*{urlValue4}"></div>
+      </div>
+
+      <div class="col-md-4 mb-1">
+        <label for="urlKey5" class="form-label visually-hidden"></label>
+        <input type="text" class="form-control py-1" id="urlKey5"
+          th:class="${#fields.hasErrors('urlKey5')}? 'form-control py-1 is-invalid' : 'form-control py-1'"
+          th:field="*{urlKey5}" placeholder="キータグ5">
+        <div class="invalid-feedback ms-3" id="errorUrlKey5"
+          th:if="${#fields.hasErrors('urlKey5')}" th:errors="*{urlKey5}"></div>
+      </div>
+
+      <div class="col-md-8 mb-2">
+        <label for="urlValue5" class="form-label visually-hidden"></label>
+        <input type="text" class="form-control py-1" id="urlValue5"
+          th:class="${#fields.hasErrors('urlValue5')}? 'form-control py-1 is-invalid' : 'form-control py-1'"
+          th:field="*{urlValue5}" placeholder="http:// or https://">
+        <div class="invalid-feedback ms-3" id="errorUrlValue5"
+          th:if="${#fields.hasErrors('urlValue5')}" th:errors="*{urlValue5}"></div>
+      </div>
+    </div>
+
+    <div class="row g-3 justify-content-end m-2 me-2">
+
+      <div class="col-6 col-md-3 text-start order-2 mt-1">
+        <button type="submit"class="btn btn-primary btn-width">テーマの作成</button>
+      </div>
+
+      <div class="col-6 col-md-3 text-end order-1 mt-1">
+        <a th:href="@{/learning-list}">
+          <button type="button"
+            class="btn btn-light btn-width border border-primary">キャンセル</button>
+        </a>
+      </div>
+
+    </div>
+  </form>
+  <script src="../static/js/validation-bundle.js" th:src="@{/js/validation-bundle.js}"></script>
+</body>
+
+</html>

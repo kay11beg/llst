@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+/*タグ情報上書き /static/css/bootstrap.css from Line222 */
+h1 {
+  font-size:1.75em !important;
+  margin-bottom:0rem !important;
+}
+
+/*画面共通クラス*/
+
+.llst-bg-color {
+  background-color:#eaf4fc;
+}
+
+.footer-container-width {
+  min-width:320px;
+  max-width:1280px;
+}
+
+.main-container-width {
+  min-width:320px;
+  max-width:1024px;
+}
+
+/*テキストエリア拡張*/
+.pb-ta-custom {
+  padding-bottom:8rem;
+}
+
+.btn-width {
+  width:120px !important;
+}
+
+@media (min-width:768px){
+  .comp-md-width {
+    width:768px !important;
+  }
+
+  .def-md-width {
+    width:1280px !important;
+  }
+}
