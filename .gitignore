@@ -3,6 +3,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+*validation.bundle.js
+*validation.bundle.min.js
 
 ### STS ###
 .apt_generated
@@ -22,10 +24,12 @@ target/
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
+node_modules/
 /dist/
 /nbdist/
 /.nb-gradle/
 build/
+coverage/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
